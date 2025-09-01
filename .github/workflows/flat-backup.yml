@@ -5,7 +5,7 @@ on:
     inputs:
       formats:
         description: "Comma-separated formats"
-        default: "pdf,musicxml,midi"
+        default: "pdf,musicxml,mid,mxl,wav,mp3,"
         required: false
 
 jobs:
