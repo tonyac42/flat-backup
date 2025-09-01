@@ -39,7 +39,9 @@ def list_scores(session):
             seen.add(s["id"]); out.append({"id":s["id"],"title": s.get("title")})
     # Walk every collection we can see (owned or shared)
     for col in paged(session, f"{API}/collections"):
-        cid=col.get("id"); if not cid: continue
+        cid = col.get("id")
+        if not cid:
+            continue
         for s in paged(session, f"{API}/collections/{cid}/scores"):
             if s["id"] not in seen:
                 seen.add(s["id"]); out.append({"id":s["id"],"title": s.get("title")})
