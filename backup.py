@@ -85,6 +85,16 @@ def main():
     ok(s.get(f"{API}/me", timeout=TIMEOUT))
 
     scores=list_scores(s)
+    print("First score:", scores[0])
+sid = scores[0]["id"]
+rev = latest_rev(sess, sid)
+print("Latest rev:", rev)
+url = f"{API}/scores/{sid}/revisions/{rev}/pdf"
+print("Trying export:", url)
+r = sess.get(url, params={"url":"true"}, timeout=TIMEOUT)
+print("Status:", r.status_code, r.text[:300])
+sys.exit(0)
+
     if not scores:
         print("No scores found."); return
     print(f"Found {len(scores)} scores. Exporting: {', '.join(FORMATS)}", flush=True)
